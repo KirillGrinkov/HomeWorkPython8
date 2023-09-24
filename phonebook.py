@@ -1,0 +1,58 @@
+# Задача No49. Решение в группах
+# Создать телефонный справочник с возможностью импорта и экспорта данных в формате 
+# .txt. Фамилия, имя, отчество, номер телефона - данные, которые должны находиться в файле.
+# 1. Программа должна выводить данные
+# 2. Программа должна сохранять данные в текстовом файле
+# 3. Пользователь может ввести одну из
+# характеристик для поиска определенной записи(Например имя или фамилию человека)
+# 4. Использование функций. Ваша программа не должна быть линейной
+
+
+def write_first_name():
+    first_name = input('Введите имя: ')
+    return first_name
+
+def write_sur_name():
+    sur_name = input('Введите Фамилию: ')
+    return sur_name
+
+def write_phone_number():
+    phone_number = input('Введите номер телефона: ')
+    return phone_number
+
+def write_adress():
+    adress = input('Введите адресс: ')
+    return adress
+
+def input_data(a=None):
+    first_name = write_first_name()
+    sur_name = write_sur_name()
+    phone_number = write_phone_number()
+    adress = write_adress()
+    with open('phonebook.txt', 'a', encoding='utf-8') as data:
+        data .write(f'{first_name} {sur_name}: {phone_number}\n{adress}\n\n')
+
+
+def print_data():
+    with open('phonebook.txt', 'r', encoding='utf-8') as data:
+        data_first = data.readlines()
+        for line in data_first:
+            print(line, end='')
+
+
+def search_line():
+    search = input('Введите данные для поиска: ')
+    with open('phonebook.txt', 'r', encoding='utf-8') as data:
+        temp = data.readlines()
+        data_first = ''.join(temp).split('\n\n')[:-1]
+        for line in data_first:
+            if search in line:
+                print(line)
+
+
+
+
+
+# input_data()
+# print_data()
+# search_line()
